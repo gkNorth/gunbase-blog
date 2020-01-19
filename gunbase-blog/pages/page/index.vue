@@ -1,4 +1,24 @@
 <template>
+  <v-app>
+    <v-app-bar
+      app
+      color="#004D40"
+      dark
+    >
+      <div class="d-flex align-center">
+        <h1 class="header-title">Gunbase</span></h1>
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        to="/"
+        text
+      >
+        <span class="mr-2">HOME</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
     <div id="app">
         <div class="itemContainer">
           <div class="item" v-for="detail in list" :key="detail.id">
@@ -14,6 +34,7 @@
             <nuxt-link to="/">戻る</nuxt-link>
         </div>
     </div>
+  </v-app>
 </template>
 
 <script>
@@ -30,12 +51,7 @@
       if (process.client) {
         const contents = document.getElementById('contents');
         const config = {
-                apiKey: "AIzaSyBUz1NJpEI21rn7-95R75vM7YyY2zbeA6k",
-                authDomain: "gunbase-v2.firebaseapp.com",
-                databaseURL: "https://gunbase-v2.firebaseio.com",
-                projectId: "GUNBASE V2",
-                storageBucket: "gunbase-v2.appspot.com",
-                messagingSenderId: "480521834607"
+
         };
 
         const firebaseApp = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
@@ -65,3 +81,9 @@
     }
   }
 </script>
+
+<style>
+  #app {
+    margin-top: 30px;
+  }
+</style>
