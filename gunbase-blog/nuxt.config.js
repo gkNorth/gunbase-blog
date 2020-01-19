@@ -13,6 +13,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://www.gstatic.com/firebasejs/5.5.4/firebase.js' },
+      { src: 'https://unpkg.com/flamelink/dist/flamelink.js' }
     ]
   },
   /*
