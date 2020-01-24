@@ -1,35 +1,47 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="#004D40"
+  <div>
+    <v-app>
+      <v-app-bar
+        app
+        color="#004D40"
+        dark
+      >
+        <div class="d-flex align-center">
+          <h1 class="header-title">Gunbase</span></h1>
+        </div>
+
+        <v-spacer></v-spacer>
+
+        <v-btn
+          to="/"
+          text
+        >
+          <span class="mr-2">HOME</span>
+          <v-icon>mdi-open-in-new</v-icon>
+        </v-btn>
+      </v-app-bar>
+    </v-app>
+
+    <v-card
+      v-for="item in reverseItems"
+      :key="item.id"
+      color="#899386"
       dark
     >
-      <div class="d-flex align-center">
-        <h1 class="header-title">Gunbase</span></h1>
-      </div>
+      <v-card-title class="headline">
+        <h2>
+          <nuxt-link :to="{ name: 'page', query: { q: item.id } }" :id="item.id">タイトル： {{ item.title }}</nuxt-link>
+        </h2>
+      </v-card-title>
 
-      <v-spacer></v-spacer>
+      <v-card-subtitle>{{ item.createdAt }}</v-card-subtitle>
 
-      <v-btn
-        to="/"
-        text
-      >
-        <span class="mr-2">HOME</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+      <v-card-actions>
+        <v-btn text :to="{ name: 'page', query: { q: item.id } }" :id="item.id">Read Now</v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
 
-    <div class="list">
-      <div v-for="item in items" :key="item.id">
-        <div>
-          <h2>
-            <nuxt-link :to="{ name: 'page', query: { q: item.id } }" :id="item.id">タイトル： {{ item.title }}</nuxt-link>
-          </h2>
-        </div>
-      </div>
-    </div>
-  </v-app>
 </template>
 
 <script>
@@ -39,11 +51,21 @@ export default {
       items: []
     };
   },
+  computed: {
+    reverseItems() {
+      return this.items.slice().reverse();
+    }
+  },
   async asyncData () {
     if (process.client) {
       const contents = document.getElementById('contents');
       const config = {
-
+              apiKey: "AIzaSyBUz1NJpEI21rn7-95R75vM7YyY2zbeA6k",
+              authDomain: "gunbase-v2.firebaseapp.com",
+              databaseURL: "https://gunbase-v2.firebaseio.com",
+              projectId: "GUNBASE V2",
+              storageBucket: "gunbase-v2.appspot.com",
+              messagingSenderId: "480521834607"
       };
 
       const firebaseApp = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
@@ -56,7 +78,6 @@ export default {
           list.push(posts[data])
         })
       })
-      console.log(list)
       return {
         items: list
       }
@@ -65,11 +86,15 @@ export default {
 }
 </script>
 
-<style>
-  body {
-    color: #333;
+<style lang="scss" scoped>
+  h2 {
+    font-size: 100%;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
-  .list {
-    margin-top: 30px;
+  .v-card {
+    margin-top: 20px;
   }
 </style>
