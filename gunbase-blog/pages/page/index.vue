@@ -1,43 +1,22 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="#004D40"
-      dark
-    >
-      <div class="d-flex align-center">
-        <h1 class="header-title">Gunbase</span></h1>
+  <div id="app">
+    <div class="itemContainer">
+      <div class="item" v-for="detail in list" :key="detail.id">
+        <h2> {{ detail.title }}</h2>
+        <ul class="date">
+          <li>{{ detail.__meta__.createdDate | capitalize }}</li>
+          <li>{{ detail.date | capitalize }}</li>
+        </ul>
+        <ul class="tags">
+          <li v-for="(item, index) in detail.tag" :key="item.index">{{ item }}</li>
+        </ul>
+        <div v-html="detail.content">{{ detail.content }}</div>
       </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        to="/"
-        text
-      >
-        <span class="mr-2">HOME</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <div id="app">
-        <div class="itemContainer">
-          <div class="item" v-for="detail in list" :key="detail.id">
-            <h2> {{ detail.title }}</h2>
-            <ul class="date">
-              <li>{{ detail.__meta__.createdDate | capitalize }}</li>
-              <li>{{ detail.date | capitalize }}</li>
-            </ul>
-            <ul class="tags">
-              <li v-for="(item, index) in detail.tag" :key="item.index">{{ item }}</li>
-            </ul>
-            <div v-html="detail.content">{{ detail.content }}</div>
-          </div>
-        </div>
-        <div class="my-2">
-          <v-btn small color="#899386"><nuxt-link to="/">Back</nuxt-link></v-btn>
-        </div>
     </div>
-  </v-app>
+    <div class="my-2">
+      <button small color="#899386"><nuxt-link to="/">Back</nuxt-link></button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -50,16 +29,15 @@
       }
     },
     async asyncData (params) {
-      console.log(params.query.q)
       if (process.client) {
         const contents = document.getElementById('contents');
         const config = {
-                apiKey: "AIzaSyBUz1NJpEI21rn7-95R75vM7YyY2zbeA6k",
-                authDomain: "gunbase-v2.firebaseapp.com",
-                databaseURL: "https://gunbase-v2.firebaseio.com",
-                projectId: "GUNBASE V2",
-                storageBucket: "gunbase-v2.appspot.com",
-                messagingSenderId: "480521834607"
+                apiKey: process.env.API_KEY,
+                authDomain: process.env.AUTH_DOMAIN,
+                databaseURL: process.env.DATABASE_URL,
+                projectId: process.env.PROJECT_ID,
+                storageBucket: process.env.STORAGE_BUCKET,
+                messagingSenderId: process.env.MESSAGINGSENDER_ID
         };
 
         const firebaseApp = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
@@ -90,6 +68,9 @@
 </script>
 
 <style lang="scss">
+.v-application--wrap {
+  min-height: 50px !important;
+}
   // #app {
   //   // margin-top: 40px;
   //   .itemContainer {

@@ -1,3 +1,5 @@
+require('dotenv').config();
+const { API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGINGSENDER_ID } = process.env;
 
 export default {
   mode: 'spa',
@@ -44,7 +46,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Axios module configuration
@@ -61,5 +64,13 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  env: {
+    API_KEY,
+    AUTH_DOMAIN,
+    DATABASE_URL,
+    PROJECT_ID,
+    STORAGE_BUCKET,
+    MESSAGINGSENDER_ID
   }
 }
