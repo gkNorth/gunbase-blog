@@ -1,0 +1,37 @@
+.v-toolbar__title {
+  color: #fff;
+}
+.v-toolbar__content {
+  background: $main-color;
+}
+.v-content__wrap {
+  background: #f9f9fb;
+}
+.v-card {
+  margin-bottom: 15px;
+  min-width: 300px;
+}
+.v-application {
+  .title {
+    font-weight: bold !important;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:last-child {
+  margin-right: 0;
+}
+.v-content {
+  padding-bottom: 0 !important;
+}
+.v-content__wrap {
+  .itemContainer {
+    color: #333;
+    @include mq-pc {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 75%;
+    }
+  }
+}

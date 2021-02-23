@@ -1,0 +1,447 @@
+@charset "UTF-8";
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+body {
+  line-height: 1; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+ul {
+  list-style: none; }
+
+nav ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none; }
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold; }
+
+del {
+  text-decoration: line-through; }
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0; }
+
+input, select {
+  vertical-align: middle; }
+
+@media screen and (min-width: 769px) {
+  .view-pc {
+    display: block; } }
+
+@media screen and (max-width: 768px) {
+  .view-pc {
+    display: none; } }
+
+@media screen and (min-width: 769px) {
+  .view-sp {
+    display: none; } }
+
+@media screen and (max-width: 768px) {
+  .view-sp {
+    display: block; } }
+
+* {
+  box-sizing: border-box;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif; }
+
+a:hover {
+  opacity: .7; }
+
+.v-toolbar__title {
+  color: #fff; }
+
+.v-toolbar__content {
+  background: #052635; }
+
+.v-content__wrap {
+  background: #f9f9fb; }
+
+.v-card {
+  margin-bottom: 15px;
+  min-width: 300px; }
+
+.v-application .title {
+  font-weight: bold !important; }
+
+.v-application a {
+  text-decoration: none; }
+
+.v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:last-child {
+  margin-right: 0; }
+
+.v-content {
+  padding-bottom: 0 !important; }
+
+.v-content__wrap .itemContainer {
+  color: #333; }
+  @media screen and (min-width: 769px) {
+    .v-content__wrap .itemContainer {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 75%; } }
+
+.tag-list {
+  list-style: none;
+  padding: 20px 0; }
+  .tag-list li {
+    margin-bottom: 20px; }
+    .tag-list li span {
+      color: #fff;
+      font-size: 130%; }
+
+.g-nav-wrap {
+  background: #052635;
+  width: 100%; }
+  .g-nav-wrap .g-nav-list {
+    display: flex;
+    justify-content: center; }
+    .g-nav-wrap .g-nav-list li {
+      display: flex;
+      position: relative;
+      text-align: center; }
+      .g-nav-wrap .g-nav-list li:before {
+        background: #fff;
+        content: '';
+        display: block;
+        height: 20px;
+        margin-top: -10px;
+        position: absolute;
+        top: 50%;
+        width: 1px; }
+      .g-nav-wrap .g-nav-list li:first-child:before {
+        content: none; }
+      .g-nav-wrap .g-nav-list li a {
+        color: #fff;
+        display: block;
+        padding: 20px 10px; }
+        .g-nav-wrap .g-nav-list li a span {
+          color: #fff; }
+
+.container {
+  padding: 0 !important; }
+  @media screen and (min-width: 769px) {
+    .container {
+      max-width: 100% !important; } }
+
+h2 {
+  font-size: 100%; }
+  h2 a {
+    color: #333; }
+
+.mv {
+  position: relative;
+  height: 190px; }
+  .mv:before {
+    background-size: 3px 3px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3) 1px, transparent 2px, transparent);
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    opacity: .2;
+    z-index: 1; }
+  .mv img {
+    height: 190px;
+    object-fit: cover;
+    width: 100%; }
+
+.list {
+  margin: 10px; }
+  @media screen and (min-width: 769px) {
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around; } }
+  .list .card {
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; }
+    @media screen and (min-width: 769px) {
+      .list .card {
+        display: flex;
+        flex-direction: column;
+        width: 250px; } }
+    @media screen and (max-width: 768px) {
+      .list .card:first-child {
+        margin-top: 0; } }
+    @media screen and (min-width: 769px) {
+      .list .card a {
+        display: flex;
+        flex-direction: column;
+        height: 100%; } }
+
+.thumb {
+  position: relative;
+  width: 100%; }
+  .thumb img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%; }
+  .thumb .tag {
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0; }
+    .thumb .tag span {
+      background: rgba(70, 70, 70, 0.7);
+      color: #fff;
+      display: block;
+      font-size: 90%;
+      margin-bottom: 3px;
+      padding: 2px 5px; }
+
+.txt {
+  background: #fff;
+  padding: .6em; }
+  @media screen and (min-width: 769px) {
+    .txt {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-bottom: 30px;
+      position: relative; } }
+  .txt .date {
+    color: #777;
+    font-family: 'arial black';
+    font-size: 70%; }
+  .txt .more {
+    text-align: right; }
+    @media screen and (min-width: 769px) {
+      .txt .more {
+        bottom: 5px;
+        position: absolute;
+        right: 5px; } }
+
+.btn-wrap {
+  margin: 20px 0;
+  text-align: center;
+  width: 100%; }
+  .btn-wrap .-limit {
+    background: #375437;
+    margin: auto;
+    padding: 5px 10px;
+    width: 200px; }
+    .btn-wrap .-limit span {
+      color: #fff; }
+
+.btn {
+  background: #a9b3a6;
+  border-radius: 3px;
+  display: inline-block;
+  color: #fff; }
+
+.my-2 {
+  margin: 0 10px;
+  text-align: right; }
+
+.tags {
+  margin-bottom: 10px;
+  padding-right: 10px;
+  text-align: right; }
+  .tags .tag {
+    background: rgba(70, 70, 70, 0.7);
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    font-size: 90%;
+    padding: 2px 5px; }
+
+.wrap-in {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  margin: 0 auto 20px;
+  padding: 10px;
+  width: 70%; }
+  @media screen and (min-width: 769px) {
+    .wrap-in {
+      width: 300px; } }
+  .wrap-in .toc-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center; }
+    .wrap-in .toc-title span {
+      border-bottom: 1px solid #bbb;
+      padding: 5px 30px; }
+  .wrap-in #toc {
+    padding: 5px 10px 10px 35px; }
+    .wrap-in #toc .item {
+      margin-bottom: 5px; }
+      .wrap-in #toc .item a {
+        color: #0000EE; }
+
+@media screen and (min-width: 769px) {
+  #app {
+    display: flex;
+    justify-content: space-between; }
+    #app .contents-wrap {
+      flex: 4; }
+    #app .side-nav {
+      background: #f3f3f3;
+      flex: 1;
+      margin-top: 50px;
+      padding: 5px;
+      width: 90%; }
+      #app .side-nav h3 {
+        margin-bottom: 10px; }
+      #app .side-nav li {
+        margin-bottom: 10px; } }
+
+@media screen and (min-width: 769px) {
+  .list-wrap {
+    margin-bottom: 50px; } }
+
+footer {
+  padding: 5px !important;
+  position: static !important; }
+  footer span {
+    color: #fff; }
+
+@media screen and (min-width: 769px) {
+  .contents-wrap {
+    min-width: 700px; } }
+
+@media screen and (min-width: 769px) {
+  .contents-wrap .my-2 {
+    margin: 8px auto;
+    max-width: 75%; } }
+
+.itemContainer {
+  margin-bottom: 30px; }
+  .itemContainer h1 {
+    box-sizing: border-box;
+    font-size: 170%;
+    margin: 0 10px;
+    padding: 4px 6px; }
+  .itemContainer h2 {
+    background: #eee;
+    border-bottom: 2px solid #052635;
+    font-size: 135%;
+    margin: 10px 0;
+    padding-left: 10px; }
+  .itemContainer h3 {
+    border-left: 5px solid #052635;
+    font-size: 115%;
+    margin: 10px 0;
+    padding-left: 10px; }
+  .itemContainer .date {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    margin: 0 10px 10px;
+    padding-left: 30px; }
+    .itemContainer .date li {
+      color: #777;
+      font-family: 'arial black';
+      margin-left: 40px;
+      position: relative; }
+      .itemContainer .date li:before {
+        content: '';
+        background: url("../../assets/created_ico.png") center top/contain no-repeat;
+        display: block;
+        left: -24px;
+        margin-top: -10px;
+        opacity: .8;
+        position: absolute;
+        top: 50%;
+        height: 22px;
+        width: 22px; }
+      .itemContainer .date li:nth-child(2):before {
+        background: url("../../assets/update_ico.png") center top/contain no-repeat;
+        left: -19px;
+        margin-top: -8.5px;
+        opacity: .7;
+        height: 17px;
+        width: 17px; }
+  .itemContainer .tags .tag {
+    background: transparent;
+    text-align: center; }
+    .itemContainer .tags .tag span {
+      background: rgba(70, 70, 70, 0.7);
+      color: #fff;
+      display: block;
+      font-size: 90%;
+      margin-bottom: 3px;
+      padding: 2px 5px; }
+  .itemContainer .content-wrap {
+    margin: 10px 10px 0; }
+  .itemContainer .thumb {
+    position: relative;
+    width: 100%; }
+    @media screen and (min-width: 769px) {
+      .itemContainer .thumb {
+        margin-bottom: 20px; } }
+    .itemContainer .thumb img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%; }
+  .itemContainer ul {
+    list-style: disc; }

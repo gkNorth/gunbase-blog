@@ -1,20 +1,54 @@
 <template>
   <div id="app">
-    <div class="itemContainer">
-      <div class="item" v-for="detail in list" :key="detail.id">
-        <h2> {{ detail.title }}</h2>
-        <ul class="date">
-          <li>{{ detail.__meta__.createdDate | capitalize }}</li>
-          <li>{{ detail.date | capitalize }}</li>
-        </ul>
-        <ul class="tags">
-          <li v-for="(item, index) in detail.tag" :key="item.index">{{ item }}</li>
-        </ul>
-        <div v-html="detail.content">{{ detail.content }}</div>
+    <div class="contents-wrap">
+      <div class="itemContainer">
+        <div class="item">
+          <div v-if="items.thumbnail">
+            <div class="thumb">
+              <img :src="items.thumbnail.url" alt="">
+            </div>
+          </div>
+
+          <div v-else>
+            <div class="thumb">
+              <img src="../../assets/powderly-soy-bgwh.png" alt="">
+            </div>
+          </div>
+
+          <h1>{{ items.title }}</h1>
+          <ul class="date">
+            <li>{{ items.createdAt | capitalize }}</li>
+            <li>{{ items.updatedAt | capitalize }}</li>
+          </ul>
+          <ul class="tags">
+            <li class="tag">
+              <span v-for="item in items.tags">{{ item.tag }}</span>
+            </li>
+          </ul>
+
+          <div id="toc-wrap" class="toc-wrap"></div>
+
+          <div v-html="items.content" class="content-wrap">
+            <p>{{ items.content }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="my-2">
+        <v-btn small color="#a9b3a6"><nuxt-link to="/">トップページに戻る</nuxt-link></v-btn>
       </div>
     </div>
-    <div class="my-2">
-      <button small color="#899386"><nuxt-link to="/">Back</nuxt-link></button>
+    <div class="side-nav view-pc">
+      <h3>タグ一覧</h3>
+      <ul class="side-list">
+        <li><nuxt-link to="/"><span>HOME</span></nuxt-link></li>
+        <li class="item" v-for="(item, i) in $store.state.tags" :key="i">
+          <nuxt-link
+            :to="{ name: 'tags', params: { id: item.id }, query: { q: item.id } }"
+            :id="item.id">
+            <span>{{ item.tag }}</span>
+          </nuxt-link>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -23,38 +57,24 @@
   import axios from 'axios';
 
   export default {
-    data() {
+    async asyncData (params) {
+      const url = `https://gunbase.microcms.io/api/v1/blog/${params.query.q}`;
+      const { data } = await axios.get(url, { headers: { 'X-API-KEY': process.env.API_KEY } })
       return {
-        list: []
+        items: data
       }
     },
-    async asyncData (params) {
-      if (process.client) {
-        const contents = document.getElementById('contents');
-        const config = {
-                apiKey: process.env.API_KEY,
-                authDomain: process.env.AUTH_DOMAIN,
-                databaseURL: process.env.DATABASE_URL,
-                projectId: process.env.PROJECT_ID,
-                storageBucket: process.env.STORAGE_BUCKET,
-                messagingSenderId: process.env.MESSAGINGSENDER_ID
-        };
-
-        const firebaseApp = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
-        const app = flamelink({ firebaseApp });
-
-        const list = [];
-
-        app.content.get('myposts').then(posts => {
-          Object.keys(posts).forEach(function(data) {
-            if(posts[data].id == params.query.q) {
-              list.push(posts[data])
-            }
-          })
-        })
-        return {
-          list: list
+    mounted() {
+      const tableOfContents = document.getElementsByTagName("h2")
+      if (tableOfContents.length > 0) {
+        const el = document.getElementById("toc-wrap")
+        var list = '<div class="wrap-in"><p class="toc-title"><span>Table of Contents</span></p><ol id="toc">';
+        for(var key of tableOfContents) {
+          var item = `<li class="item"><a href="#${key.id}">${key.textContent}</a></li>`
+          list += item
         }
+        list += '</ol></div>';
+        el.innerHTML = list;
       }
     },
     filters: {
@@ -68,82 +88,5 @@
 </script>
 
 <style lang="scss">
-.v-application--wrap {
-  min-height: 50px !important;
-}
-  // #app {
-  //   // margin-top: 40px;
-  //   .itemContainer {
-  //     color: #333;
-  //     h2 {
-  //       border-bottom: 1px solid rgba(7, 36, 7, .2);
-  //       border-radius: 5px;
-  //       box-shadow: 5px 5px 5px rgba(7, 36, 7, .2);
-  //       box-sizing: border-box;
-  //       padding: 4px 6px;
-  //     }
-  //     h3 {
-  //       border-left: 5px solid rgb(7, 36, 7);
-  //       margin: 10px 0;
-  //       padding-left: 10px;
-  //     }
-  //     .tags {
-  //       display: flex;
-  //       list-style: none;
-  //       margin-bottom: 20px;
-  //       li {
-  //         background: #bbb;
-  //         border-radius: 5px;
-  //         margin-right: 10px;
-  //         padding: 1px 5px;
-  //       }
-  //     }
-  //     .date {
-  //       display: flex;
-  //       list-style: none;
-  //       justify-content: flex-end;
-  //       margin-bottom: 10px;
-  //       padding-left: 30px;
-  //       li {
-  //         color: #777;
-  //         margin-left: 40px;
-  //         position: relative;
-  //         &:before {
-  //           content:'';
-  //           background: url('../../assets/created_ico.png') center top /contain no-repeat;
-  //           display: block;
-  //           left: -24px;
-  //           margin-top: -10px;
-  //           opacity: .8;
-  //           position: absolute;
-  //           top: 50%;
-  //           height: 22px;
-  //           width: 22px;
-  //         }
-  //         &:nth-child(2) {
-  //           &:before {
-  //             background: url('../../assets/update_ico.png') center top /contain no-repeat;
-  //             left: -19px;
-  //             margin-top: -7.5px;
-  //             opacity: .7;
-  //             height: 17px;
-  //             width: 17px;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  //   .btn {
-  //     background: #a9b3a6;
-  //     border-radius: 3px;
-  //     display: inline-block;
-  //     color: #fff;
-  //   }
-  //   button {
-  //     a {
-  //       color: #fff;
-  //       text-decoration: none;
-  //     }
-  //   }
-  // }
+
 </style>

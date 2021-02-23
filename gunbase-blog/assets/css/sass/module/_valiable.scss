@@ -1,0 +1,13 @@
+$main-color: #052635;
+
+@mixin mq-pc() {
+  @media screen and (min-width: 769px){
+    @content
+  }
+};
+
+@mixin mq-sp() {
+  @media screen and (max-width: 768px){
+    @content
+  }
+};

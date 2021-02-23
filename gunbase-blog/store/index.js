@@ -1,8 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+export const state = () => ({
+  contents: [],
+  headers: [],
+  tags: []
+})
 
-Vue.use(Vuex)
-
-export const state = {
-  list: []
-};
+export const mutations = {
+  contentsCommit(state, contents) {
+    state.contents = contents
+  },
+  headersCommit(state, headers) {
+    state.headers = headers
+  },
+  tagsCommit(state, tags) {
+    state.tags = tags
+  }
+}

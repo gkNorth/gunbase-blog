@@ -1,87 +1,91 @@
 <template>
-  <div>
+  <v-app light>
 
-    <header id="header" class="header">
-      <div class="header-in">
-        <h1 class="header-title">Gunbase</span></h1>
-        <div class="menu-btn">
-          <a href="#">MENU</a>
-        </div>
-      </div>
-    </header>
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant="miniVariant"
+      :clipped="clipped"
+      fixed
+      app
+    >
+      <ul class="tag-list">
+        <li><nuxt-link to="/"><span>HOME</span></nuxt-link></li>
+        <li class="item" v-for="(item, i) in $store.state.tags" :key="i">
+          <nuxt-link
+            :to="{ name: 'tags', params: { id: item.id }, query: { q: item.id } }"
+            :id="item.id">
+            <span>{{ item.tag }}</span>
+          </nuxt-link>
+        </li>
+      </ul>
+    </v-navigation-drawer>
 
-    <span class="header-space"></span>
+    <v-app-bar
+      :clipped-left="clipped"
+      fixed
+      app
+    >
+      <v-toolbar-title v-text="title" />
+      <v-spacer />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    </v-app-bar>
 
-    <nuxt />
+    <v-content>
+      <v-container>
+        <nuxt />
+      </v-container>
+    </v-content>
 
-  </div>
+    <v-footer app>
+      <span>&copy; 2020 Gunbase All Rights Reserved.</span>
+    </v-footer>
+  </v-app>
 </template>
 
-<style lang="scss">
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.header {
-  background: #004D40;
-  box-shadow: 0 4px 10px rgba(0,0,0,.5);
-  color: #eee;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 50;
-  .header-in {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 10px;
+<script>
+import axios from 'axios';
+export default {
+  data () {
+    return {
+      clipped: false,
+      drawer: false,
+      fixed: false,
+      items: [
+        {
+          icon: 'mdi-apps',
+          title: 'Welcome',
+          to: '/'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Inspire',
+          to: '/inspire'
+        }
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: 'Gunbase'
+    }
+  },
+  async mounted() {
+    const baseURL = 'https://gunbase.microcms.io/api/v1'
+    const apiKey = process.env.API_KEY;
+    const config = { headers: {
+      'X-API-KEY': apiKey
+    }}
+    const data = await Promise.all([
+      axios.get(`${baseURL}/blog`,config),
+      axios.get(`${baseURL}/header`,config),
+      axios.get(`${baseURL}/tag`,config)
+    ])
+    this.$store.commit('contentsCommit', data[0].data.contents)
+    this.$store.commit('headersCommit', data[1].data.contents)
+    this.$store.commit('tagsCommit', data[2].data.contents)
   }
 }
-.header-space {
-  display: block;
-  height: 50px;
-}
+</script>
 
-/* *,
+<style lang="scss" scoped>
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-} */
 </style>
