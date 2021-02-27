@@ -32,7 +32,7 @@
 
           <div v-else>
             <div class="thumb">
-              <img src="../assets/powderly-soy-bgwh.png" alt="">
+              <img src="../assets/noimage.png" alt="">
               <div class="tag">
                 <span v-for="item in item.tags">{{ item.tag }}</span>
               </div>

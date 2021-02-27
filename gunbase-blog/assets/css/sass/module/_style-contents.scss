@@ -6,6 +6,7 @@
 }
 h2 {
   font-size: 100%;
+  width: 100%;
   a {
     color: #333;
   }
@@ -180,11 +181,11 @@ h2 {
     justify-content: space-between;
     .contents-wrap {
       flex: 4;
+      margin-top: 20px;
     }
     .side-nav {
       background: #f3f3f3;
       flex: 1;
-      margin-top: 50px;
       padding: 5px;
       width: 90%;
       h3 {

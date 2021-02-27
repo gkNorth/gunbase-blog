@@ -4,6 +4,18 @@
       <img :src="item.headerPC.url" alt="" class="view-pc">
       <img :src="item.headerSP.url" alt="" class="view-sp">
     </div>
+    <div class="g-nav-wrap view-pc">
+      <ul class="g-nav-list">
+        <li><nuxt-link to="/"><span>HOME</span></nuxt-link></li>
+        <li class="item" v-for="(item, i) in $store.state.tags" :key="i">
+          <nuxt-link
+            :to="{ name: 'tags', params: { id: item.id }, query: { q: item.id } }"
+            :id="item.id">
+            <span>{{ item.tag }}</span>
+          </nuxt-link>
+        </li>
+      </ul>
+    </div>
     <div class="list">
       <h2>タグ: {{tagName}}</h2>
       <div v-if="tagFilter.length > 0">
@@ -12,20 +24,14 @@
             :to="{ name: 'page', params: { id: item.id }, query: { q: item.id } }"
             :id="item.id">
             <div v-if="item.thumbnail">
-              <div class="thumb" v-for="url in item.thumbnail">
-                <img :src="url" alt="">
-                <div class="tag">
-                  <span v-for="item in item.tags">{{ item.tag }}</span>
-                </div>
+              <div class="thumb">
+                <img :src="item.thumbnail.url" alt="">
               </div>
             </div>
 
             <div v-else>
               <div class="thumb">
-                <img src="../../assets/powderly-soy-bgwh.png" alt="">
-                <div class="tag">
-                  <span v-for="item in item.tags">{{ item.tag }}</span>
-                </div>
+                <img src="../../assets/noimage.png" alt="">
               </div>
             </div>
 

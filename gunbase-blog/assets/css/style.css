@@ -191,7 +191,8 @@ a:hover {
       max-width: 100% !important; } }
 
 h2 {
-  font-size: 100%; }
+  font-size: 100%;
+  width: 100%; }
   h2 a {
     color: #333; }
 
@@ -343,11 +344,11 @@ h2 {
     display: flex;
     justify-content: space-between; }
     #app .contents-wrap {
-      flex: 4; }
+      flex: 4;
+      margin-top: 20px; }
     #app .side-nav {
       background: #f3f3f3;
       flex: 1;
-      margin-top: 50px;
       padding: 5px;
       width: 90%; }
       #app .side-nav h3 {
@@ -441,7 +442,7 @@ footer {
         margin-bottom: 20px; } }
     .itemContainer .thumb img {
       height: 200px;
-      object-fit: cover;
+      object-fit: contain;
       width: 100%; }
   .itemContainer ul {
     list-style: disc; }

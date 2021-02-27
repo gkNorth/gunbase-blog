@@ -11,7 +11,7 @@
 
           <div v-else>
             <div class="thumb">
-              <img src="../../assets/powderly-soy-bgwh.png" alt="">
+              <img src="../../assets/noimage.png" alt="">
             </div>
           </div>
 
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="my-2">
-        <v-btn small color="#a9b3a6"><nuxt-link to="/">トップページに戻る</nuxt-link></v-btn>
+        <v-btn small color="#212121"><nuxt-link to="/">トップページに戻る</nuxt-link></v-btn>
       </div>
     </div>
     <div class="side-nav view-pc">
